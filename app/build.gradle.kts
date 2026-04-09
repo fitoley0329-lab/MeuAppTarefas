@@ -31,9 +31,12 @@ android {
 }
 
 dependencies {
-    // Versões fixas para não dar erro de "requires 8.9.1"
+    // Versões fixas que funcionam no computador da escola:
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+
+    // Substituímos o 'libs.androidx.activity' por esta versão fixa:
+    implementation("androidx.activity:activity-ktx:1.8.2")
 }
