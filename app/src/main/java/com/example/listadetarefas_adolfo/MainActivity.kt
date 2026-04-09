@@ -34,9 +34,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         visualizadorLista.setOnItemLongClickListener { _, _, posicao, _ ->
-            listaDeTarefas.removeAt(posicao)
-            adaptador.notifyDataSetChanged()
-            Toast.makeText(this, "Tarefa removida!", Toast.LENGTH_SHORT).show()
+            // Criar um alerta de confirmação
+            val construtor = android.app.AlertDialog.Builder(this)
+            construtor.setTitle("Confirmar Exclusão")
+            construtor.setMessage("Você tem certeza que deseja apagar esta tarefa?")
+
+            // Botão de Sim
+            construtor.setPositiveButton("Sim") { _, _ ->
+                listaDeTarefas.removeAt(posicao)
+                adaptador.notifyDataSetChanged()
+                Toast.makeText(this, "Tarefa removida!", Toast.LENGTH_SHORT).show()
+            }
+
+            // Botão de Não
+            construtor.setNegativeButton("Não") { dialogo, _ ->
+                dialogo.dismiss() // Apenas fecha o alerta
+            }
+
+            construtor.show() // Mostra o alerta na tela
             true
         }
     }
